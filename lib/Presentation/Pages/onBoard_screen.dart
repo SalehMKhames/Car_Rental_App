@@ -1,3 +1,4 @@
+import 'package:car_rental_app/Presentation/Pages/CarListScreen.dart';
 import 'package:flutter/material.dart';
 
 class OnboardScreen extends StatelessWidget
@@ -50,7 +51,7 @@ class OnboardScreen extends StatelessWidget
 
                     ),
                     onPressed: () {
-
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => CarListScreen()));
                     },
                     child: const Text("Let's Go", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                   ),

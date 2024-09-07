@@ -1,4 +1,4 @@
-import 'package:car_rental_app/Pages/onBoard_screen.dart';
+import 'package:car_rental_app/Presentation/Pages/onBoard_screen.dart';
 import 'package:car_rental_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
