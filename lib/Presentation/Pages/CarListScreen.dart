@@ -1,4 +1,4 @@
-import 'package:car_rental_app/Data/Models/Car_model.dart';
+import 'package:car_rental_app/Domain/Entity/Car.dart';
 import 'package:car_rental_app/Presentation/Widgets/car_card.dart';
 import 'package:flutter/material.dart';
 
