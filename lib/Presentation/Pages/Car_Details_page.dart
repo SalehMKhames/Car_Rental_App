@@ -1,4 +1,5 @@
 import 'package:car_rental_app/Data/Models/Car_model.dart';
+import 'package:car_rental_app/Presentation/Pages/Maps_Details_page.dart';
 import 'package:car_rental_app/Presentation/Widgets/car_card.dart';
 import 'package:car_rental_app/Presentation/Widgets/more_cars.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 class CarDetailsPage extends StatelessWidget
 {
   final Car car;
-  CarDetailsPage({super.key, required this.car});
+  const CarDetailsPage({super.key, required this.car});
 
   @override
   Widget build(BuildContext context)
@@ -28,12 +29,13 @@ class CarDetailsPage extends StatelessWidget
       (
         children:
         [
-          CarCard(car: Car(model: "Dodge Demon", distance: 138, fuelCapacity: 70, pricePerHour: 550)),
+          CarCard(car: Car(model: car.model, distance: car.distance, fuelCapacity: car.fuelCapacity, pricePerHour: car.pricePerHour)),
           const SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row
             (
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:
               [
                 Expanded(
@@ -59,17 +61,19 @@ class CarDetailsPage extends StatelessWidget
                 ),
                 const SizedBox(width: 20,),
                 Expanded(
-                  child: Container
-                  (
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: const DecorationImage(
-                        image: AssetImage("assets/maps.png"),
-                        fit: BoxFit.cover,
+                  child: GestureDetector(
+                    child: Container
+                    (
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: const DecorationImage(
+                          image: AssetImage("assets/maps.png"),
+                          fit: BoxFit.cover,
+                        ),
+                          boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 5),]
                       ),
-                        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 5),]
                     ),
-
+                    onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (_) => MapsDetailsPage(car: car)));},
                   ),
                 ),
               ],

@@ -51,7 +51,7 @@ class OnboardScreen extends StatelessWidget
 
                     ),
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => CarListScreen()));
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => CarListScreen()), (route) => false,);
                     },
                     child: const Text("Let's Go", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                   ),
