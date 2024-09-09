@@ -1,35 +1,40 @@
-import 'package:car_rental_app/Domain/Entity/Car.dart';
+import 'package:car_rental_app/Presentation/Bloc/car_bloc.dart';
 import 'package:car_rental_app/Presentation/Widgets/car_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CarListScreen extends StatelessWidget
-{
+class CarListScreen extends StatelessWidget {
   CarListScreen({super.key});
-  final List cars =
-  [
-    Car(model: "Lamborghini Aventador SV", distance: 138, fuelCapacity: 70, pricePerHour: 550),
-    Car(model: "Dodge Demon", distance: 138, fuelCapacity: 70, pricePerHour: 550),
-    Car(model: "Nissan GT-R", distance: 138, fuelCapacity: 70, pricePerHour: 550),
-    Car(model: "Koenigsseg Jesko", distance: 138, fuelCapacity: 70, pricePerHour: 550),
-    Car(model: "Dodge Charger SRT", distance: 138, fuelCapacity: 70, pricePerHour: 550),
-  ];
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         title: const Text("Choose Your Car"),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
-      body: ListView.builder
-      (
-        itemCount: cars.length,
-        itemBuilder: (context, index)
+      body: BlocBuilder<CarBloc, CarState>(
+        builder: (context, state)
         {
-          return CarCard(car: cars[index]);
-        }
+          if (state is CarLoading)
+            {
+              return const CircularProgressIndicator(color: Colors.black87,);
+            }
+          else if (state is CarLoaded){
+            return ListView.builder
+              (
+                itemCount: state.cars.length,
+                itemBuilder: (context, index) {
+                  return CarCard(car: state.cars[index]);
+                }
+            );
+          }
+          else if(state is CarError)
+          {return Center(child: Text("error: ${state.message}"));}
+
+          return Container();
+        },
       ),
     );
   }

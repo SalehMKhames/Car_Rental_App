@@ -1,6 +1,8 @@
 import 'package:car_rental_app/Data/Model/Car_Model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable()
 class FirebaseCarSource
 {
   final FirebaseFirestore fire;
